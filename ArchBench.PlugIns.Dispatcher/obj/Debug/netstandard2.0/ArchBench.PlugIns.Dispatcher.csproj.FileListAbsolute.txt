@@ -1,0 +1,12 @@
+/home/ruben/Projects/C#/AB/ArchBench.PlugIns.Dispatcher/bin/Debug/netstandard2.0/ArchBench.PlugIns.Dispatcher.deps.json
+/home/ruben/Projects/C#/AB/ArchBench.PlugIns.Dispatcher/bin/Debug/netstandard2.0/ArchBench.PlugIns.Dispatcher.dll
+/home/ruben/Projects/C#/AB/ArchBench.PlugIns.Dispatcher/bin/Debug/netstandard2.0/ArchBench.PlugIns.Dispatcher.pdb
+/home/ruben/Projects/C#/AB/ArchBench.PlugIns.Dispatcher/bin/Debug/netstandard2.0/ArchBench.PlugIns.dll
+/home/ruben/Projects/C#/AB/ArchBench.PlugIns.Dispatcher/bin/Debug/netstandard2.0/HttpServer.dll
+/home/ruben/Projects/C#/AB/ArchBench.PlugIns.Dispatcher/bin/Debug/netstandard2.0/ArchBench.PlugIns.pdb
+/home/ruben/Projects/C#/AB/ArchBench.PlugIns.Dispatcher/obj/Debug/netstandard2.0/ArchBench.PlugIns.Dispatcher.csprojAssemblyReference.cache
+/home/ruben/Projects/C#/AB/ArchBench.PlugIns.Dispatcher/obj/Debug/netstandard2.0/ArchBench.PlugIns.Dispatcher.AssemblyInfoInputs.cache
+/home/ruben/Projects/C#/AB/ArchBench.PlugIns.Dispatcher/obj/Debug/netstandard2.0/ArchBench.PlugIns.Dispatcher.AssemblyInfo.cs
+/home/ruben/Projects/C#/AB/ArchBench.PlugIns.Dispatcher/obj/Debug/netstandard2.0/ArchBench.PlugIns.Dispatcher.csproj.CopyComplete
+/home/ruben/Projects/C#/AB/ArchBench.PlugIns.Dispatcher/obj/Debug/netstandard2.0/ArchBench.PlugIns.Dispatcher.dll
+/home/ruben/Projects/C#/AB/ArchBench.PlugIns.Dispatcher/obj/Debug/netstandard2.0/ArchBench.PlugIns.Dispatcher.pdb

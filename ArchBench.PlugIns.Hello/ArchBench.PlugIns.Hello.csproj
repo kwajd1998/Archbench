@@ -5,13 +5,23 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ArchBench.PlugIns\ArchBench.PlugIns.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Reference Include="HttpServer">
       <HintPath>..\HttpServer\HttpServer.dll</HintPath>
     </Reference>
+    <Reference Include="mscorlib" />
   </ItemGroup>
-
+  <ItemGroup>
+    <ProjectReference Include="..\ArchBench.PlugIns\ArchBench.PlugIns.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="ArchBench.PlugIns.DispatcherServer\obj\ArchBench.PlugIns.DispatcherServer.csproj.nuget.g.props" />
+    <None Remove="ArchBench.PlugIns.DispatcherServer\obj\ArchBench.PlugIns.DispatcherServer.csproj.nuget.cache" />
+    <None Remove="ArchBench.PlugIns.DispatcherServer\obj\project.assets.json" />
+    <None Remove="ArchBench.PlugIns.DispatcherServer\obj\Debug\netstandard2.0\ArchBench.PlugIns.DispatcherServer.assets.cache" />
+    <None Remove="ArchBench.PlugIns.DispatcherServer\obj\Debug\netstandard2.0\ArchBench.PlugIns.DispatcherServer.csprojAssemblyReference.cache" />
+    <None Remove="ArchBench.PlugIns.DispatcherServer\obj\ArchBench.PlugIns.DispatcherServer.csproj.nuget.cache" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="ArchBench.PlugIns.DispatcherServer\PlugInDispatcherServer.cs" />
+  </ItemGroup>
 </Project>

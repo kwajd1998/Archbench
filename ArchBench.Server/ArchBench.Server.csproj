@@ -55,52 +55,28 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HttpServer">
-      <HintPath>..\HttpServer\HttpServer.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.1.1.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    <Reference Include="HttpServer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d7063c47c583695a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLLs\HttpServer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Buffers.4.5.0\lib\netstandard2.0\System.Buffers.dll</HintPath>
-    </Reference>
     <Reference Include="System.Core">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Memory.4.5.3\lib\netstandard2.0\System.Memory.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Numerics" />
-    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.6.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.7.0\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Text.Encodings.Web, Version=4.0.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Text.Encodings.Web.4.7.0\lib\netstandard2.0\System.Text.Encodings.Web.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Text.Json, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Text.Json.4.7.1\lib\net461\System.Text.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.2\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml.Linq">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Data.DataSetExtensions">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="HttpServer">
+      <HintPath>..\HttpServer\HttpServer.dll</HintPath>
+    </Reference>
+    <Reference Include="ArchBench.PlugIns.Hello">
+      <HintPath>..\ArchBench.PlugIns.Hello\bin\Debug\netstandard2.0\ArchBench.PlugIns.Hello.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArchServerForm.cs">
@@ -109,8 +85,15 @@
     <Compile Include="ArchServerForm.Designer.cs">
       <DependentUpon>ArchServerForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Configurations\ServerConfig.cs" />
-    <Compile Include="Configurations\PlugInConfig.cs" />
+    <Compile Include="IPlugInsManager.cs" />
+    <Compile Include="ModulePlugIns.cs" />
+    <Compile Include="PlugInsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PlugInsForm.Designer.cs">
+      <DependentUpon>PlugInsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PlugInsManager.cs" />
     <Compile Include="PlugInsSettingsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -123,6 +106,9 @@
     <Compile Include="UI\SettingsPropertyGridAdapter.cs" />
     <EmbeddedResource Include="ArchServerForm.resx">
       <DependentUpon>ArchServerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PlugInsForm.resx">
+      <DependentUpon>PlugInsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PlugInsSettingsForm.resx">
       <DependentUpon>PlugInsSettingsForm.cs</DependentUpon>
@@ -140,7 +126,6 @@
     <None Include="app.config" />
     <None Include="ArchBench.Server.cd" />
     <None Include="Diagrams\HTTPServer.cd" />
-    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -174,9 +159,25 @@
       <Project>{3674e873-4dfe-4296-8d75-9869ac6a9ec1}</Project>
       <Name>ArchBench.PlugIns</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ArchBench.Server.Kernel\ArchBench.Server.Kernel.csproj">
-      <Project>{d90378cc-1780-4b17-81fe-409b465280f7}</Project>
-      <Name>ArchBench.Server.Kernel</Name>
+    <ProjectReference Include="..\ArchBench.PlugIns.Hello\ArchBench.PlugIns.Hello.csproj">
+      <Project>{EED7ED91-2E76-4449-9AA6-0ADDF7C86803}</Project>
+      <Name>ArchBench.PlugIns.Hello</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ArchBench.PlugIns.DispatcherServer\ArchBench.PlugIns.DispatcherServer\ArchBench.PlugIns.DispatcherServer.csproj">
+      <Project>{D285C411-36AD-4EB7-85B9-63F1290A13C5}</Project>
+      <Name>ArchBench.PlugIns.DispatcherServer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ArchBench.PlugIns.Dispatcher\ArchBench.PlugIns.Dispatcher.csproj">
+      <Project>{40C1FE60-5EB2-4B5E-959E-2D5DF651EE22}</Project>
+      <Name>ArchBench.PlugIns.Dispatcher</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ArchBench.PlugIns.BrokerServer\ArchBench.PlugIns.BrokerServer.csproj">
+      <Project>{FDF6A3C6-9E70-473A-88A9-D7CF0B60F1AD}</Project>
+      <Name>ArchBench.PlugIns.BrokerServer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ArchBench.PlugIns.Broker\ArchBench.PlugIns.Broker.csproj">
+      <Project>{6C14EAFA-E5C1-47E8-8B3A-591067E1DC77}</Project>
+      <Name>ArchBench.PlugIns.Broker</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -184,51 +185,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\disconnect.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\connect1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\disconnect1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\pencil_delete.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\plugin.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\plugin_add.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\plugin_delete.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\plugin_disabled.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\plugin_edit.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\plugin_error.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\plugin_go.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\plugin_link.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\disk.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\folder.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\folder1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\folder %281%29.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

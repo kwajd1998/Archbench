@@ -1,0 +1,28 @@
+﻿<Properties StartupConfiguration="{6E27897A-D0AB-4F1F-92EF-F1079CF0416E}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="ArchBench.PlugIns.Hello/PlugInHello.cs">
+    <Files>
+      <File FileName="ArchBench.PlugIns.Hello/PlugInHello.cs" Line="22" Column="10" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="ArchBench" expanded="True">
+            <Node name="PlugIns" expanded="True">
+              <Node name="ArchBench.PlugIns.Hello" expanded="True">
+                <Node name="Dependencies" expanded="True" />
+              </Node>
+            </Node>
+            <Node name="ArchBench.PlugIns" expanded="True" selected="True" />
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.ArchBench.Server PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

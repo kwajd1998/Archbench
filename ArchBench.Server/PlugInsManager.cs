@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Windows.Forms.VisualStyles;
 using ArchBench.PlugIns;
 
 namespace ArchBench.Server
@@ -13,7 +12,7 @@ namespace ArchBench.Server
     public class PlugInsManager : IPlugInsManager
     {
         #region Fields
-        private readonly IDictionary<IArchBenchPlugIn,string> mPlugIns = new Dictionary<IArchBenchPlugIn, string>();
+        private readonly IList<IArchBenchPlugIn> mPlugIns = new List<IArchBenchPlugIn>();
         #endregion
 
         public PlugInsManager( IArchBenchPlugInHost aHost )
@@ -23,9 +22,9 @@ namespace ArchBench.Server
 
         public IArchBenchPlugInHost Host { get; }
 
-        public IEnumerable<IArchBenchPlugIn> PlugIns => mPlugIns.Keys;
+        public IEnumerable<IArchBenchPlugIn> PlugIns => mPlugIns;
 
-        private IEnumerable<IArchBenchPlugIn> Load( string aFileName, string aFullName )
+        public IEnumerable<IArchBenchPlugIn> Add( string aFileName )
         {
             // Create a new assembly from the plugin file we're adding..
             Assembly assembly = Assembly.LoadFrom( aFileName );
@@ -43,50 +42,38 @@ namespace ArchBench.Server
 
                 // Make sure the interface we want to use actually exists
                 if ( typeInterface == null ) continue;
-                if ( aFullName?.Equals( type.FullName ) ?? true )
-                {
-                    // Create a new instance and store the instance in the collection for later use
-                    var instance = (IArchBenchPlugIn)Activator.CreateInstance(assembly.GetType(type.ToString()));
 
-                    // Set the Plug-in's host to this class which inherited IPluginHost
-                    instance.Host = Host;
+                // Create a new instance and store the instance in the collection for later use
+                var instance = (IArchBenchPlugIn) Activator.CreateInstance( assembly.GetType( type.ToString() ) );
 
-                    // Call the initialization sub of the plugin
-                    instance.Initialize();
+                // Set the Plug-in's host to this class which inherited IPluginHost
+                instance.Host = Host;
 
-                    //Add the new plugin to our collection here
-                    mPlugIns.Add(instance, aFileName);
+                // Call the initialization sub of the plugin
+                instance.Initialize();
 
-                    instances.Add(instance);
-                }
+                //Add the new plugin to our collection here
+                mPlugIns.Add( instance );
+
+                instances.Add( instance );
             }
 
             return instances;
         }
 
-        public IEnumerable<IArchBenchPlugIn> Add( string aFileName )
-        {
-            return Load( aFileName, null );
-        }
-        
-        public IArchBenchPlugIn Add( string aFileName, string aFullName )
-        {
-            return Load( aFileName, aFullName )?.FirstOrDefault();
-        }
-
         public void Remove( IArchBenchPlugIn aPlugIn )
         {
-            if ( mPlugIns.ContainsKey( aPlugIn ) ) mPlugIns.Remove( aPlugIn );
+            if ( mPlugIns.Contains( aPlugIn ) ) mPlugIns.Remove( aPlugIn );
         }
 
         public IArchBenchPlugIn Find( string aName )
         {
-            return mPlugIns.Keys.FirstOrDefault( p => p.Name == aName );
+            return mPlugIns.FirstOrDefault( p => p.Name == aName );
         }
 
         public void Clear()
         {
-            foreach ( var plugin in mPlugIns.Keys )
+            foreach ( var plugin in mPlugIns )
             {
                 // Close all plugin instances
                 plugin.Dispose();
@@ -95,12 +82,5 @@ namespace ArchBench.Server
             //Finally, clear our collection of available plugins
             mPlugIns.Clear();
         }
-
-        public string GetFileName( IArchBenchPlugIn aPlugIn )
-        {
-            if ( mPlugIns.ContainsKey( aPlugIn ) ) return mPlugIns[ aPlugIn ];
-            return string.Empty;
-        }
-
     }
 }
